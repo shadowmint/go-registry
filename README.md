@@ -23,8 +23,7 @@ A reflecting property based IOC library.
 		impl.Register((*IBar)(nil), func(R Registry) (interface{}, error) {
 			rtn := BarType{nil}
 
-      // Manually apply recursive resolution on struct objects
-			R.Bind(&rtn)
+			R.Bind(&rtn) // <-- Manually apply recursive resolution on struct objects
 
 			return rtn, nil
 		})
