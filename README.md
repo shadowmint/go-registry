@@ -16,11 +16,13 @@ A reflecting property based IOC library.
 
     ...
 
-    impl.Register((*IFoo)(nil), func(_ Registry) (interface{}, error) {
+    reg := threaded.New()
+
+    reg.Register((*IFoo)(nil), func(_ Registry) (interface{}, error) {
         return FooType{}, nil
     })
 
-    impl.Register((*IBar)(nil), func(R Registry) (interface{}, error) {
+    reg.Register((*IBar)(nil), func(R Registry) (interface{}, error) {
         rtn := BarType{nil}
 
         R.Bind(&rtn) // <-- Manually apply recursive resolution on struct objects
@@ -29,5 +31,5 @@ A reflecting property based IOC library.
     })
 
     target := MyType{nil}
-    impl.Bind(&target)
+    reg.Bind(&target)
     target.Bar.Bar()
