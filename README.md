@@ -29,5 +29,5 @@ A reflecting property based IOC library.
 		})
 
     target := MyType{nil}
-		impl.Bind(&target)
+    impl.Bind(&target)
     target.Bar.Bar()
